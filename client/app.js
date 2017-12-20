@@ -1,3 +1,5 @@
-/**
- * Created by Administrator on 2017/12/20.
- */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App.jsx';
+
+ReactDOM.render(<App></App>,document.getElementById('root'));
