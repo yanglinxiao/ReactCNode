@@ -1,0 +1,27 @@
+{
+  "name": "react-cnode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanglinxiao/ReactCNode.git"
+  },
+  "author": "yanglinxiao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanglinxiao/ReactCNode/issues"
+  },
+  "homepage": "https://github.com/yanglinxiao/ReactCNode#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  }
+}
