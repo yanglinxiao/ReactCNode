@@ -9,7 +9,7 @@ const config = {
     output:{
         filename: '[name].[hash].js',//打包后的文件名称
         path: path.join(__dirname,'../dist'),//打包后的文件所在位置
-        publicPath: '/public'//配置静态资源的前缀，方便服务器对于静态资源的判断
+        publicPath: '/public/'//配置静态资源的前缀，方便服务器对于静态资源的判断
     },
     module:{
         rules:[
@@ -52,7 +52,10 @@ if(isDev){
         publicPath: '/public',//配置静态资源路径前缀和output中的一致，否则无法访问
         historyApiFallback:{
             index: '/public/index.html'//找不到页面的时候跳转到index.html
-        }
+        },
+        // headers: {
+        //     'Access-Control-Allow-Origin': '*',
+        // }
     }
     config.plugins.push(new webpack.HotModuleReplacementPlugin());//实现热更替的webpack插件
 }
