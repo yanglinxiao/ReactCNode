@@ -1,45 +1,24 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackMerge = require('webpack-merge');
+const webpackCommon = require('./webpack.config.common');
 const isDev = process.env.NODE_ENV === 'development';//判断是否处于开发环境
-const config = {
-  entry:{
-    app: path.join(__dirname,'../client/app.js')//配置项目入口文件
-  },
-  output:{
-    filename: '[name].[hash].js',//打包后的文件名称
-    path: path.join(__dirname,'../dist'),//打包后的文件所在位置
-    publicPath: '/public/'//配置静态资源的前缀，方便服务器对于静态资源的判断
-  },
-  module:{
-    rules:[
-      {
-        enforce: 'pre',
-        test: /.(js|jsx)$/,
-        loader: 'eslint-loader',
-        exclude: [
-          path.resolve(__dirname,'node_modules/')
-        ]
-      },
-      {
-        test: /.jsx$/,
-        loader: 'babel-loader'//使用babel-loader去编译jsx文件
-      },
-      {
-        test: /.js$/,
-        loader: 'babel-loader',
-        exclude: [
-          path.join(__dirname,'../node_modules')
-        ]
-      }
-    ]
-  },
-  plugins:[
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname,'../client/template.html')
-    })
-  ]
-}
+const config = webpackMerge(webpackCommon,{
+	entry:{
+		app: path.join(__dirname,'../client/app.js')//配置项目入口文件
+	},
+	output:{
+		filename: '[name].[hash].js',//打包后的文件名称
+		path: path.join(__dirname,'../dist'),//打包后的文件所在位置
+		publicPath: '/public/'//配置静态资源的前缀，方便服务器对于静态资源的判断
+	},
+	plugins:[
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname,'../client/template.html')
+		})
+	]
+})
 
 //devServer是存在于内存当中的服务器，但是硬盘上存在dist目录会访问硬盘上的，所以启动devServer要先删除硬盘上的dist目录
 if(isDev){
