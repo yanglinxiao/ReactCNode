@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
+	resolve: {
+		extensions: ['.js','.jsx']//配置默认后缀名
+	},
 	module:{
 		rules:[
 			{
-				enforce: 'pre',
+				enforce: 'pre',//在所有loader之前执行
 				test: /.(js|jsx)$/,
 				loader: 'eslint-loader',
 				exclude: [

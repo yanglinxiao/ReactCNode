@@ -34,7 +34,7 @@ webpackCompiler.watch({},(err,stats) => {
 	stats.warnings.forEach(warn => console.log(warn));//命令行输出警告信息
 
 	const serverBundlePath = path.join(serverConfig.output.path,serverConfig.output.filename);//获取服务器端的bundle文件路径
-	console.log(serverBundlePath);
+	// console.log(serverBundlePath);
 	const serverBundleString = mfs.readFileSync(serverBundlePath,'utf-8');//以字符串的形式获取服务器端bundle文件
 	const m = new module.constructor();//获取commonjs模块的构造函数
 	m._compile(serverBundleString,'server-entry.js');//利用commonjs的模块构造函数把字符串形式的js转成commonjs规范的js文件，并设置名称供其它模块可以require

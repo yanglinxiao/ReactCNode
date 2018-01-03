@@ -15,8 +15,11 @@
 		"react/jsx-filename-extension": [0],
 		"keyword-spacing": [0],
 		"space-before-blocks": [0],
-		"indent": ["error",4],
+		"indent": ["error","tab"],
 		"no-tabs": [0],
-		"react/jsx-indent": [0]
+		"react/jsx-indent": [0],
+		"quotes": [0],
+		"jsx-a11y/anchor-is-valid": [0],
+		"spaced-comment": [0]
 	}
 }
