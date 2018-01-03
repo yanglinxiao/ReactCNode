@@ -3,10 +3,25 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const express = require('express');
 const reactSSR = require('react-dom/server');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+
 const app = express();
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
 
 app.use(favicon(path.join(__dirname,'../favicon.ico')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(session({
+	maxAge: 10 * 60 * 1000,
+	name: 'userid',
+	secret: 'react cnode',
+	resave: false,
+	saveUninitialized: false
+}))
+
+app.use('/api/user',require('./api/login'));
+app.use('/api',require('./api/proxy'));
 
 if(!isDev){
     app.use('/public',express.static(path.join(__dirname,'../dist')));
