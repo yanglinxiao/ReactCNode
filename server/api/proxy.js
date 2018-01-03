@@ -1,4 +1,5 @@
 const axios = require('axios');
+const queryString = require('querystring');
 
 const baseUrl = 'http://cnodejs.org/api/v1';
 
@@ -14,16 +15,18 @@ module.exports = function(req,res,next){
 		})
 	}
 
-	const query = Object.assign({},req.query);
+	const query = Object.assign({},req.query,{
+		accesstoken: (req.query.needAccessToken && req.method === 'GET') ? user.accessToken : ''
+	});
 	if(query.needAccessToken){
 		delete query.needAccessToken;
 	}
 	axios(`${baseUrl}/${path}`,{
 		method: req.method,
 		params: query,
-		data: Object.assign({},req.body,{
-			accesstoken: user.accessToken
-		}),
+		data: queryString.stringify(Object.assign({},req.body,{
+			accesstoken: (req.query.needAccessToken && req.method === 'POST') ? user.accessToken : ''
+		})),
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		}

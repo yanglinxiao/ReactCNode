@@ -5,14 +5,14 @@ const baseUrl = 'http://cnodejs.org/api/v1';
 
 router.post('/login',function(req,res,next){
 	axios.post(`${baseUrl}/accesstoken`,{
-		accesstoken: req.body.accesstoken
+		accesstoken: req.body.accessToken
 	}).then(resp => {
 		if(resp.status === 200 && resp.data.success){
 			req.session.user = {
-				accessToken: req.body.accesstoken,
+				accessToken: req.body.accessToken,
 				loginName: resp.data.loginname,
 				id: resp.data.id,
-				avatarUrl: resp.user.avatar_url,
+				avatarUrl: resp.data.avatar_url,
 			};
 			res.json({
 				success: true,
