@@ -19,7 +19,7 @@ const render = (Component) => {
 
 render(App);
 
-//应用了eact-hot-loader/babel，会把热加载的接口暴露在module.hot上
+//应用了react-hot-loader/babel，会把热加载的接口暴露在module.hot上
 if(module.hot){
 	//接受App.jsx进行热加载
 	module.hot.accept('./views/App', () => {
